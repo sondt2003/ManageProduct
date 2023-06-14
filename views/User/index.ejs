@@ -1,0 +1,47 @@
+<%- include("../inc/top.ejs",srcStyle="User") %>
+    <nav class="navbar fs-5 navbar-expand-lg bg-body-tertiary  bg-primary" data-bs-theme="dark">
+        <div class="container-fluid">
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav  me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" aria-current="page" href="./Dashboard">Dashboard</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle active" href="./User" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        User
+                      </a>
+                      <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="/user/add">Add User</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                      </ul>
+                  </li>
+                <li class="nav-item">
+                    <a class="nav-link " aria-current="page" href="./Product">Product</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link " aria-current="page" href="./Category">Category</a>
+                </li>
+            </ul>
+            <form class="d-flex" role="search">
+                <input type="text" name="username" class="form-control User" id="username"
+                placeholder="Filter User Name...">
+            <button type="button" onclick="filterProduct()" class="btn" data-bs-dismiss="modal"><a class="btn btn-primary" id="href_user"
+                href="#">Filter</a></button>
+            </form>
+          </div>
+        </div>
+      </nav>
+      <script>
+  const filterProduct = () => {
+    var username = document.getElementById('username').value;
+    if(username.length==0){
+      document.getElementById("href_user").href = "/user";
+    } else{
+      document.getElementById("href_user").href = "/user?UserName=" + username;
+    }
+    console.log(username);
+  }
+</script>
+<%- include("./list.ejs") %>
+<%- include("./delete.ejs") %>
+<%- include("../inc/bottom.ejs") %>

@@ -1,0 +1,41 @@
+<article>
+    <div class="container-fluid">
+        <header>
+            <div  style="font-size: 30px;font-weight: 500;text-align: center;">
+                User dashboard
+            </div>
+        </header>
+        <div class="row" style="margin-top: 40px;position: relative;display:flex !important;justify-content: center !important;">
+           <table  class="table fs-5" style="width: 70%; padding: 100px;">
+            <thead>
+                <tr>
+                    <td scope="col"><a class="hoverSort" href="/user?sort=_id">ID</a></td>
+                    <td scope="col"><a class="hoverSort"  href="/user?sort=UserName">Username</a></td>
+                    <td scope="col"><a class="hoverSort"  href="/user?sort=Email">Email</a></td>
+                    <td scope="col"><a class="hoverSort"  href="/user?sort=Role">Role</a></td>
+                    <td scope="col" class="text-center">Action</td>
+                </tr>
+            </thead>
+            <tbody>
+                <% users.forEach(row => {%>
+                    <tr class="align-middle">
+                        <td><%= row._id %></td>
+                        <td><%= row.UserName %></td>
+                        <td><%= row.Email %></td>
+                        <td><%= row.Role %></td>
+                        <td class='text-center'>
+                            <a  class="btn btn-primary" href="/user/edit/<%= row._id %>">Edit</a>
+                            <button type="button" class="btn btn-primary" onclick="deleteProduct('<%= row._id %>')" data-bs-toggle="modal" data-bs-target="#DeleteModal">Delete</button>
+                        </td>
+                    </tr>    
+                <% }); %>
+            </tbody>
+        </table>
+        </div>
+    </div>
+</article>
+<script>
+    const deleteProduct=(_id)=>{
+        document.getElementById("href_id").href="/user/delete/"+_id;
+    }
+</script>

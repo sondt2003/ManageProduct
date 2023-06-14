@@ -1,0 +1,71 @@
+<%- include("../inc/top.ejs",srcStyle="User" ) %>
+<nav class="navbar fs-5 navbar-expand-lg bg-body-tertiary  bg-primary" data-bs-theme="dark">
+  <div class="container-fluid">
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav  me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="http://localhost:3000/Dashboard">Dashboard</a>
+          </li>
+          <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle active" href="http://localhost:3000/User" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  User
+                </a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="/user/add">Add User</a></li>
+                  <li><hr class="dropdown-divider"></li>
+                </ul>
+            </li>
+          <li class="nav-item">
+              <a class="nav-link " aria-current="page" href="http://localhost:3000/Product">Product</a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link " aria-current="page" href="http://localhost:3000/Category">Category</a>
+          </li>
+      </ul>
+      <form class="d-flex" role="search">
+          <input type="text" name="username" class="form-control User" id="username"
+          placeholder="Filter User Name...">
+      <button type="button" onclick="filterProduct()" class="btn" data-bs-dismiss="modal"><a class="btn btn-primary" id="href_user"
+          href="#">Filter</a></button>
+      </form>
+    </div>
+  </div>
+</nav>
+  <form method="post" class="m-5">
+    <div class="modal-header">
+      <h1 class="modal-title fs-5" id="staticBackdropLabel">Edit User</h1>
+    </div>
+    <div class="modal-body">
+      <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">User Name</label>
+        <input type="text" value="<%= details.UserName %>" name="UserName" class="form-control User"
+          id="exampleFormControlInput1" placeholder="User Name ...">
+      </div>
+      <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">Email</label>
+        <input type="email" value="<%= details.Email %>" name="Email" class="form-control Password"
+          id="exampleFormControlInput1" placeholder="Email ...">
+      </div>
+      <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">Password</label>
+        <input type="text" value="<%= details.Password %>" name="Password" class="form-control Password"
+          id="exampleFormControlInput1" placeholder="Password ...">
+      </div>
+      <div class="mb-3">
+        <select class="form-select" name="Role" aria-label="Default select example">
+          <% if(String(details.Role)==="Admin" ){ %>
+            <option value="Admin" selected>Admin</option>
+            <option value="User" >User</option>
+            <% } else { %>
+              <option value="Admin">Admin</option>
+              <option value="User" selected>User</option>
+              <% } %>
+        </select>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Save changes</button>
+    </div>
+  </form>
+  <%- include("../inc/bottom.ejs") %>

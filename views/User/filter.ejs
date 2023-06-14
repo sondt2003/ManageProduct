@@ -1,0 +1,35 @@
+<!--Edit Modal -->
+<div class="modal fade" id="FilterModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+  aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="staticBackdropLabel">Filter User Name</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="mb-3">
+          <label for="exampleFormControlInput1" class="form-label">User Name</label>
+          <input type="text" name="username" class="form-control User" id="username"
+            placeholder="Filter User Name...">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" onclick="filterProduct()" class="btn" data-bs-dismiss="modal"><a class="btn btn-primary" id="href_user"
+            href="#">Filter</a></button>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  const filterProduct = () => {
+    var username = document.getElementById('username').value;
+    if(username.length==0){
+      document.getElementById("href_user").href = "/user";
+    } else{
+      document.getElementById("href_user").href = "/user?UserName=" + username;
+    }
+    console.log(username);
+  }
+</script>

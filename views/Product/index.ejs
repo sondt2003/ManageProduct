@@ -1,0 +1,59 @@
+<%- include("../inc/top.ejs",srcStyle="Product") %>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary fs-5  bg-primary" data-bs-theme="dark">
+        <div class="container-fluid">
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav  me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" aria-current="page" href="./Dashboard">Dashboard</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" aria-current="page" href="./User">User</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle active" href="./Product" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Product
+                      </a>
+                      <ul class="dropdown-menu">
+                        <li> <a class="dropdown-item" href="/product/add">Add Product</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                      </ul>
+                  </li>
+                <li class="nav-item">
+                    <a class="nav-link" aria-current="page" href="./Category">Category</a>
+                </li>
+            </ul>
+            <div class="dropdown">
+                <a class="btn btn-secondary dropdown-toggle mx-2" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                 Type
+                </a>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                    <% listTypes.forEach(row => {%>
+                        <a class="dropdown-item" href="/product?IDtype=<%= row._id %>"><%= row.Name %></a>
+                    <% }); %>
+                </div>
+              </div>
+           <div>
+           </div>
+            <form class="d-flex" role="search">
+              <input class="form-control me-2" type="search"  id="nameProduct" placeholder="Filter User Name..."  aria-label="Search">
+              <button type="button" onclick="filterProduct()" class="btn" data-bs-dismiss="modal"><a class="btn btn-primary" id="href_filter"
+                href="#">Filter</a></button>  
+            </form>
+          </div>
+        </div>
+      </nav>
+
+      <script>
+        const filterProduct = () => {
+          var Name = document.getElementById('nameProduct').value;
+          if(Name.length==0){
+            document.getElementById("href_filter").href = "/product";
+          } else{
+            document.getElementById("href_filter").href = "/product?Name=" + 	Name;
+          }
+          console.log(Name);
+        }
+      </script>
+<%- include('./list.ejs') %>
+<%- include('./delete.ejs') %>
+<%- include('../inc/bottom.ejs') %>

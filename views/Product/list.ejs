@@ -1,0 +1,47 @@
+<article>
+    <div class="container-fluid">
+        <header>
+            <div style="font-size: 30px;font-weight: 500;text-align: center;">
+                Product dashboard
+            </div>
+        </header>
+        <div class="row"
+            style="margin-top: 60px;position: relative;display:flex !important;justify-content: center !important;">
+            <table  class="table fs-5" style="width: 70%; padding: 100px;">
+                <thead>
+                    <tr >
+                        <td scope="col"><a class="hoverSort"  href="/product?sort=_id">ID</a></td>
+                        <td scope="col"><a class="hoverSort"  href="/product?sort=Name">Name</a></td>
+                        <td scope="col"><a class="hoverSort"  href="/product?sort=Price">Price</a></td>
+                        <td scope="col"><a class="hoverSort"  href="/product?sort=Image">Image</a></td>
+                        <td scope="col"><a class="hoverSort"  href="/product?sort=Content">Content</a></td>
+                        <td scope="col"><a class="hoverSort"  href="/product?sort=IDtype">Type</a></td>
+                        <td scope="col" class="text-center">Action</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% Products.forEach((row)=> { %>
+                        <tr class="align-middle">
+                            <td><%= row._id %></td>
+                            <td><a class="hoverSort"   href="/product/details/<%= row._id %>"><%= row.Name %></a></td><td><%= row.Price %> $</td>
+                            <td><img src='/data/<%= row.Image %>' class="Product_img" alt=""></td>
+                            <td><%= row.Content %></td>
+                            <td><%= row.IDtype.Name %></td>
+                            <td class="text-center">
+                                <a  class="btn btn-primary"   href="/product/edit/<%= row._id %>">Edit</a>
+                                <button type="button"
+                                    onclick="deleteProduct('<%= row._id %>')" class="btn btn-primary"
+                                    data-bs-toggle="modal" data-bs-target="#DeleteModal">Delete</button>
+                                </td>
+                        </tr>
+                        <% }); %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</article>
+<script>
+    const deleteProduct = (_id) => {
+        document.getElementById("href_id").href = "/product/delete/" + _id;
+    }
+</script>
